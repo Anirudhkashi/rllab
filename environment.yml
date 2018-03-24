@@ -62,5 +62,5 @@ dependencies:
         - pylru==1.0.9
         - hyperopt
         - polling
-        - pybullet
+        - pybullet==1.9.3
         
