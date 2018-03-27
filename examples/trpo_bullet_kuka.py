@@ -5,27 +5,15 @@ from rllab.envs.normalized_env import normalize
 from rllab.misc.instrument import run_experiment_lite
 from rllab.policies.gaussian_mlp_policy import GaussianMLPPolicy
 
-from rllab.misc.rllab_gym_register import Register
-
 
 def run_task(*_):
-    # Please note that different environments with different action spaces may require different
-    # policies. For example with a Box action space, a GaussianMLPPolicy works, but for a Discrete
-    # action space may need to use a CategoricalMLPPolicy (see the trpo_gym_cartpole.py example)
 
-    #Register the env in gym registry and get the id
-
-    r = Register("pybullet_envs.bullet", "KukaGymEnv", max_episode_steps=1000, reward_threshold=1.0, params = {"renders":True})
-
-    env_id = r.get_id()
-
-    env = normalize(BulletEnv(env_id, r))
+    env = normalize(BulletEnv("KukaBulletEnv-v0"))
 
     policy = GaussianMLPPolicy(
         env_spec=env.spec,
         # The neural network policy should have two hidden layers, each with 32 hidden units.
-        hidden_sizes=(32, 32)
-    )
+        hidden_sizes=(32, 32))
 
     baseline = LinearFeatureBaseline(env_spec=env.spec)
 
@@ -39,7 +27,7 @@ def run_task(*_):
         discount=0.99,
         step_size=0.01,
         # Uncomment both lines (this and the plot parameter below) to enable plotting
-        plot=True,
+        #plot=True,
     )
     algo.train()
 
