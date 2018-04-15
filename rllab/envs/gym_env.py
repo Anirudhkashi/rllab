@@ -21,7 +21,6 @@ from rllab.spaces.discrete import Discrete
 from rllab.spaces.product import Product
 from rllab.misc import logger
 
-
 def convert_gym_space(space):
     if isinstance(space, gym.spaces.Box):
         return Box(low=space.low, high=space.high)
@@ -112,8 +111,8 @@ class GymEnv(Env, Serializable):
 
     def reset(self):
         if self._force_reset and self.monitoring:
-            from gym.wrappers.monitoring import Monitor
-            assert isinstance(self.env, Monitor)
+            # from gym.wrappers.monitoring import Monitor
+            # assert isinstance(self.env, Monitor)
             recorder = self.env.stats_recorder
             if recorder is not None:
                 recorder.done = True
@@ -128,7 +127,7 @@ class GymEnv(Env, Serializable):
 
     def terminate(self):
         if self.monitoring:
-            self.env._close()
+            self.env.close()
             if self._log_dir is not None:
                 print("""
     ***************************

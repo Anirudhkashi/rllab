@@ -49,7 +49,7 @@ dependencies:
         - git+https://github.com/neocxi/Lasagne.git@484866cf8b38d878e92d521be445968531646bb8#egg=Lasagne
         - git+https://github.com/plotly/plotly.py.git@2594076e29584ede2d09f2aa40a8a195b3f3fc66#egg=plotly
         - awscli
-        - git+https://github.com/openai/gym.git@v0.10.4#egg=gym
+        - git+https://github.com/openai/gym.git@1ee888390ff29e850f8cc468678d5fdbff654087#egg=gym
         - pyglet
         - git+https://github.com/neocxi/prettytensor.git
         - jupyter
